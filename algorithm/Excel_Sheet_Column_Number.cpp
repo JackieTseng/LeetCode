@@ -1,6 +1,6 @@
 /*********************************************************************************
  * Leetcode : Excel Sheet Column Number -- https://leetcode.com/problems/excel-sheet-column-number/
- * Coded in Aug 23th, 2015
+ * Coded in Aug 24th, 2015
  *
  * [Problem]
  * Related to question Excel Sheet Column Title
