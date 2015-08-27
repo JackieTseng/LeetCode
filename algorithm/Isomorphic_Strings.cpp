@@ -26,6 +26,7 @@
 #include <map>
 using namespace std;
 
+// Solution One
 bool isIsomorphic(string s, string t) {
     int slen = s.length(), tlen = t.length();
     if (slen != tlen) {
@@ -51,6 +52,36 @@ bool isIsomorphic(string s, string t) {
     }
     cout << sstr << endl << tstr << endl;
     return (sstr == tstr);
+}
+
+// Solution Two
+bool isIsomorphic(string s, string t) {
+    char smap[256] = {0}, tmap[256] = {0};
+    int i = 0 , length = s.length();
+    while (i < length) {
+        if (smap[s[i]] == 0 && tmap[t[i]] == 0) {
+            smap[s[i]] = t[i];
+            tmap[t[i]] = s[i];
+        } else {
+            if (smap[s[i]] != t[i] || tmap[t[i]] != s[i]) {
+                return false;
+            }
+        }
+        ++i;
+    }
+    return true;
+}
+
+// Solution Three
+bool isIsomorphic(string s, string t) {
+    int smap[256] = {0}, tmap[256] = {0}, len = s.length();
+    for (int i = 0; i < len; ++i) {
+        if (smap[s[i]] != tmap[t[i]]) {
+            return false;
+        }
+        smap[s[i]] = tmap[t[i]] = i + 1;
+    }
+    return true;
 }
 
 int main(int argc, const char *argv[]) {
