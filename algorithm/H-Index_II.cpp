@@ -20,7 +20,7 @@ int hIndex(vector<int>& citations) {
     }
     int l = 0, r = size - 1; 
     while (l < r) {
-        int m = (l + r) / 2;
+        int m = (l + r) >> 1;
         if (citations[m] < size - m) {
             l = m + 1;
         } else {
