@@ -1,3 +1,12 @@
+/*********************************************************************************
+ * Leetcode : Contains Duplicate -- https://leetcode.com/problems/contains-duplicate/
+ * Coded in Seq 6th, 2015
+ *
+ * [Problem]
+ * Given an array of integers, find if the array contains any duplicates. Your function
+ * should return true if any value appears at least twice in the array, and it should
+ * return false if every element is distinct.
+ *********************************************************************************/
 #include <iostream>
 #include <string>
 #include <vector>
