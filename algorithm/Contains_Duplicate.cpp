@@ -27,6 +27,21 @@ bool containsDuplicate(vector<int>& nums) {
     return false;
 }
 
+// Solution Two
+bool containsDuplicate(vector<int>& nums) {
+    bool temp[2000000] = {0};
+    int size = nums.size();
+    for (int i = 0; i < size; i++) {
+        nums[i] += 1000000;
+        if (!temp[nums[i]]) {
+            temp[nums[i]] = 1;
+        } else {
+            return true;
+        }
+    } 
+    return false;
+}
+
 int main(int argc, const char *argv[]) {
     vector<int> test;
     int n, t;
