@@ -20,17 +20,19 @@
 using namespace std;
 
 vector<int> twoSum(vector<int>& nums, int target) {
-    int array[1000000] = {0}, index[1000000] = {0}, size = nums.size();
-    for (int i = 0; i < size; i++) {
-        array[nums[i]] = 1; 
-        index[nums[i]] = i + 1;
+    int array[65000] = {0}, index[65000] = {0}, size = nums.size();
+    for (int i = 0, temp = 0; i < size; i++) {
+		temp = nums[i] + 32500;
+        array[temp] = 1; 
+        index[temp] = i + 1;
     }
+    target += 32500;
     for (int i = 0; i < size; i++) {
-        if (array[target - nums[i]] == 1) {
-            vector<int> result;
+        if (array[target - nums[i]] == 1 && index[target - nums[i]] != i + 1) {
+			vector<int> result;
             result.push_back(i + 1);
             result.push_back(index[target - nums[i]]);
-            return result;
+			return result;
         }
     }
 }
