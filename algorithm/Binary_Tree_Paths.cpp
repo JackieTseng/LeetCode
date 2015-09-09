@@ -52,10 +52,9 @@ void binaryTreePaths(vector<string>& result, TreeNode* root, string temp) {
 
 vector<string> binaryTreePaths(TreeNode* root) {
     vector<string> result;
-    if (!root) {
-        return result;
+    if (root) {
+        binaryTreePaths(result, root, to_string(root->val));
     }
-    binaryTreePaths(result, root, to_string(root->val));
     return result;
 }
 
