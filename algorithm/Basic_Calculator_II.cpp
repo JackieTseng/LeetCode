@@ -28,6 +28,7 @@
 using namespace std;
 
 // Solution Two
+// Reverse Polish Notation Method
 int calculate(string s) {
     map<char, int> kv;
     kv['*'] = 2;
@@ -36,7 +37,7 @@ int calculate(string s) {
     kv['-'] = 1;
     kv['#'] = 0;
     stack<char> opts;
-    stack<string> nums;
+    vector<string> nums;
     opts.push('#');
     int length = s.length();
     string curNumber = "";
@@ -47,7 +48,7 @@ int calculate(string s) {
         if (s[i] >= '0' && s[i] <= '9') {
             curNumber += s[i];
             if (i + 1 == length || !isdigit(s[i + 1])) {
-                nums.push(curNumber);
+                nums.push_back(curNumber);
                 curNumber = "";
             }
         } else {
@@ -55,7 +56,7 @@ int calculate(string s) {
                 opts.push(s[i]);
             } else if (s[i] == ')') {
                 while (opts.top() != '(') {
-                    nums.push(string("") + opts.top());
+                    nums.push_back(string("") + opts.top());
                     opts.pop();
                 }
                 opts.pop();
@@ -64,8 +65,8 @@ int calculate(string s) {
                     opts.push(s[i]);
                 } else {
                     if (kv[s[i]] <= kv[opts.top()]) {
-                        while (!(kv[s[i]] > kv[opts.top()] || nums.top() == "(")) {
-                            nums.push(string("") + opts.top());
+                        while (!(kv[s[i]] > kv[opts.top()] || opts.top() == '(')) {
+                            nums.push_back(string("") + opts.top());
                             opts.pop();
                         }
                     }
@@ -76,24 +77,19 @@ int calculate(string s) {
     }
     while (!opts.empty()) {
         if (opts.top() != '#') {
-            nums.push(string("") + opts.top());
+            nums.push_back(string("") + opts.top());
         }
         opts.pop();
     }
-    vector<string> result;
-    while (!nums.empty()) {
-        result.push_back(nums.top());
-        nums.pop();
-    }
-    int sum = 0;
+    int sum = 0, size = nums.size();
     stack<int> numbers;
-    for (int i = result.size() - 1, num1 = -1, num2 = -1; i >= 0; i--) {
-        if (result[i].length() > 1) {
-            numbers.push(atoi(result[i].c_str()));
+    for (int i = 0, num1 = -1, num2 = -1; i < size; i++) {
+        if (nums[i].length() > 1) {
+            numbers.push(atoi(nums[i].c_str()));
         } else {
-            char c = result[i][0];
+            char c = nums[i][0];
             if (c >= '0' && c <= '9') {
-                numbers.push(atoi(result[i].c_str()));
+                numbers.push(atoi(nums[i].c_str()));
             } else {
                 num1 = numbers.top();
                 numbers.pop();
