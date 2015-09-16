@@ -29,6 +29,7 @@ using namespace std;
 
 // Solution Two
 // Reverse Polish Notation Method
+/*
 int calculate(string s) {
     map<char, int> kv;
     kv['*'] = 2;
@@ -109,6 +110,34 @@ int calculate(string s) {
         }
     }
     return numbers.top();
+}
+*/
+
+// Solution Two
+int calculate(string s) {
+    int result = 0, curResult = 0;
+    char opt = '+';
+    for (int i = s.find_first_not_of(' '); i < s.length(); i = s.find_first_not_of(' ', i)) {
+        if (isdigit(s[i])) {
+            int temp = s[i] - '0';
+            while (++i < s.length() && isdigit(s[i])) {
+                temp = 10 * temp + s[i] - '0';
+            }
+            switch(opt) {
+                case '+' : curResult += temp; break;
+                case '-' : curResult -= temp; break;
+                case '*' : curResult *= temp; break;
+                case '/' : curResult /= temp; break;
+            }
+        } else {
+            if (s[i] == '+' || s[i] == '-') {
+                result += curResult;
+                curResult = 0;
+            }
+            opt = s[i++];
+        }
+    }
+    return result + curResult;
 }
 
 int main(int argc, const char *argv[]) {
