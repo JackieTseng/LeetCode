@@ -38,6 +38,26 @@ int minimumTotal(vector<vector<int> >& triangle) {
     return dp[0][0];
 }
 
+// Solution Two
+int dp(int i, int j, vector<vector<int> >& triangle, vector<vector<int> >& t) {
+    if (t[i][j] == INT_MAX) {
+        t[i][j] = triangle[i][j] + min(dp(i + 1, j, triangle, t), dp(i + 1, j + 1, triangle, t));
+    }
+    return t[i][j];
+}
+
+int minimumTotal(vector<vector<int> >& triangle) {
+    int r = triangle.size();
+    vector<vector<int> > t(triangle);
+    for (int i = 0; i < r - 1; i++) {
+        for (int j = 0; j <= i; j++) {
+            t[i][j] = INT_MAX;
+        } 
+    }
+    t[r - 1] = triangle[r - 1];
+    return dp(0, 0, triangle, t);
+}
+
 int main(int argc, const char *argv[]) {
     vector<int> one;
     one.push_back(2);
