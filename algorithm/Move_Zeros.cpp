@@ -17,7 +17,8 @@
 #include <vector>
 using namespace std;
 
- void moveZeroes(vector<int>& nums) {
+// Solution One
+void moveZeroes(vector<int>& nums) {
     vector<int> result;
     int size = nums.size(), counter = 0;
     for (int i = 0; i < size; i++) {
@@ -31,6 +32,16 @@ using namespace std;
         result.push_back(0);
     }
     nums = result;
+}
+
+// Solution Two
+void moveZeroes(vector<int>& nums) {
+    int size = nums.size();
+    for (int i = 0, j = 0; i < size; i++) {
+        if (nums[i] != 0) {
+            swap(nums[i], nums[j++]);
+        }
+    }
 }
 
 int main(int argc, const char *argv[]) {
