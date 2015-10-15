@@ -25,38 +25,33 @@
 using namespace std;
 
 bool wordPattern(string pattern, string str) {
-	vector<string> word;
-	string temp;
-	stringstream ss(str);
-	while (ss >> temp) {
-		word.push_back(temp);
-	}
-    if (pattern.length() != word.size()) {
-		return false;
-    }
 	map<char, string> hashTable;
     int l = pattern.length();
+	stringstream ss(str);
     for (int i = 0; i < l; i++) {
+        ss >> str;
 		char key = pattern[i];
-		string value = word[i];
 		if (hashTable.find(key) == hashTable.end()) {
 			for (map<char, string>::iterator it = hashTable.begin(); it != hashTable.end(); it++) {
-				if (value == it->second) {
+				if (str == it->second) {
 					return false;
 				}
 			}
-			hashTable[key] = value;
+			hashTable[key] = str;
 		} else {
-			if (value != hashTable[key]) {
+			if (str != hashTable[key]) {
 				return false;
 			}
 		}
+    }
+    if (ss >> str) {
+        return false;
     }
     return true;
 }
 
 int main () {
-	string p = "abba", s = "dog dog dog dog";
+	string p = "abba", s = "dog cat cat dog";
 	cout << (wordPattern(p, s)? "Yes" : "No") << endl;
 	return 0;
 }
