@@ -24,6 +24,8 @@
 #include <map>
 using namespace std;
 
+// Solution One
+/*
 bool wordPattern(string pattern, string str) {
 	map<char, string> hashTable;
     int l = pattern.length();
@@ -48,6 +50,22 @@ bool wordPattern(string pattern, string str) {
         return false;
     }
     return true;
+}
+*/
+
+// Solution Two
+bool wordPattern(string pattern, string str) {
+    map<char, int> key;
+    map<string, int> value;
+    stringstream ss(str);
+    int n = pattern.size(), i;
+    for (i = 0; ss >> str; i++) {
+        if (key[pattern[i]] != value[str]) {
+            return false;
+        }
+        key[pattern[i]] = value[str] = i + 1;
+    }
+    return i == n;
 }
 
 int main () {
