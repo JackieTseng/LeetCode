@@ -1,6 +1,6 @@
 /*********************************************************************************
  * Leetcode : Triangle -- https://leetcode.com/problems/triangle/ 
- * Coded in Seq 16th, 2015
+ * Coded in Oct 16th, 2015
  *
  * [Problem]
  * Given a triangle, find the minimum path sum from top to bottom. Each step you
