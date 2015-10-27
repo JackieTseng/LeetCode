@@ -29,7 +29,6 @@ struct TreeNode {
 };
 
 // Solution One A
-/*
 vector<int> result;
 vector<int> preorderTraversal(TreeNode* root) {
 	if (root != NULL) {
@@ -39,10 +38,8 @@ vector<int> preorderTraversal(TreeNode* root) {
 	}
 	return result;
 }
-*/
 
 // Solution One B
-/*
 void preTraversal(TreeNode* root, vector<int>& result) {
 	if (root != NULL) {
 		result.push_back(root->val);
@@ -56,10 +53,8 @@ vector<int> preorderTraversal(TreeNode* root) {
 	preTraversal(root, result);
 	return result;
 }
-*/
 
 // Solution Two A
-/*
 vector<int> preorderTraversal(TreeNode* root) {
 	vector<int> result;
 	if (root != NULL) {
@@ -79,7 +74,6 @@ vector<int> preorderTraversal(TreeNode* root) {
 	}
 	return result;
 }
-*/
 
 // Solution Two B
 vector<int> preorderTraversal(TreeNode* root) {
